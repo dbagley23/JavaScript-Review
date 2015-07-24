@@ -1,6 +1,8 @@
 /* Declare and Define the functions here that will make the function calls below work properly */
 
-
+function first(arr, cb){
+  cb(arr[0]);
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 first(names, function(firstName){
@@ -12,7 +14,9 @@ first(names, function(firstName){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
-
+function last(names, cb){
+  cb(names[names.length - 1]);
+}
 
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
@@ -27,6 +31,17 @@ last(names, function(lastName){
 
 //have the contains function return a boolean value for if the name is in the array or not.
 
+function contains(theName, names, cb){
+  var inNames = false;
+  names.forEach(function(input, i){
+    debugger;
+    if(input === theName){
+      inNames = true;
+    }
+  })
+
+  cb(inNames)
+}
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 contains('Colt', names, function(yes){
@@ -42,7 +57,14 @@ contains('Colt', names, function(yes){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
-
+function map(arr, cb){
+var newArr = [];
+  arr.forEach(function(input, i){
+    newArr.push(cb(input));
+  })
+  console.log(newArr);
+  return newArr;
+}
 
 
 var numbers = [1,2,3,4,5];
@@ -55,7 +77,25 @@ map(numbers, function(num){
 
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
-
+var uniq = function(arr, cb){
+  var uniqueArr = [];
+  arr.forEach(function(input, i){
+    if (uniqueArr.length === 0){
+      uniqueArr.push(input);
+    } else {
+      var inArray = false;
+      uniqueArr.forEach(function(input2, i2){
+        if(input === input2){
+          inArray = true;
+        }
+      })
+      if (inArray === false){
+        uniqueArr.push(input);
+      }
+    }
+  })
+  cb(uniqueArr)
+}
 
 
 
@@ -82,7 +122,13 @@ each(names, function(item, indice){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
-
+function getUserById(userID, arr, cb){
+  arr.forEach(function(input, i){
+    if(input.id === userID){
+      cb(users[i]);
+    }
+  })
+}
 
 
 var users = [
@@ -114,11 +160,20 @@ getUserById('16t', users, function(user){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
-
+function find(arr, cb){
+  for(var i = 0; i < arr.length; i++){
+    var result = cb(arr[i]);
+    if(result){
+      return arr[i];
+    }
+  };
+}
 
 
 //Looks through each value in the list, returning the first one that passes a truth test 
 var numbers  = [1, 2, 3, 4, 5, 6];
-find(numbers, function(num){ 
+var result = find(numbers, function(num){
   return num % 2 == 0; //should return 2
-})
+});
+
+console.log(result);
