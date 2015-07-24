@@ -57,19 +57,19 @@ contains('Colt', names, function(yes){
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
 
-function map(arr, cb){
-var newArr = [];
-  arr.forEach(function(input, i){
-    newArr.push(cb(input));
-  })
-  console.log(newArr);
-  return newArr;
+
+function map2(arr, cb){
+  var newArr = [];
+  arr.forEach(function(number){
+    newArr.push(cb(number));
+  });
+      return newArr;
 }
 
 
 var numbers = [1,2,3,4,5];
 //Produces a new array of values by mapping each value in list through a transformation function
-map(numbers, function(num){
+map2(numbers, function(num){
   return num * 2; //returns an array of [2,4,6,8,10]
 });
 
@@ -77,7 +77,7 @@ map(numbers, function(num){
 
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
-var uniq = function(arr, cb){
+var uniq2 = function(arr, cb){
   var uniqueArr = [];
   arr.forEach(function(input, i){
     if (uniqueArr.length === 0){
@@ -99,6 +99,22 @@ var uniq = function(arr, cb){
 
 
 
+function uniq(names, cb){
+  var uniqueArr = [];
+  names.forEach(function(name){
+    var nameFound = false;
+    uniqueArr.forEach(function(newName){
+      if (name === newName){
+        nameFound = true;
+      }
+    });
+      if (nameFound === false){
+        uniqueArr.push(name);
+      }
+  });
+  return cb(uniqueArr);
+}
+
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 uniq(names, function(uniqArr){
   console.log('The new names array with all the duplicate items removed is ', uniqArr);
@@ -108,13 +124,17 @@ uniq(names, function(uniqArr){
 
 
 /* NEXT PROBLEM - NEXT PROBLEM - NEXT PROBLEM */
-
+function each(names, cb){
+  names.forEach(function(name, i){
+    cb(name, i);
+  });
+};
 
 
 
 var names = ['Tyler', 'Cahlan', 'Ryan', 'Colt', 'Tyler', 'Blaine', 'Cahlan'];
 each(names, function(item, indice){
-  console.log('The item in the ' + indice + 'position is ' + item)
+  console.log('The item in the ' + indice + ' position is ' + item)
 });
 
 
